@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import NavigationBar from './Components/NavigationBar';
+import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
+import Dashboard from './Components/Dashboard';
+import AddRecord from './Components/AddRecord';
+import RecordsList from './Components/RecordsList';
+import { Container,Row,Col } from 'react-bootstrap';
+import AddDataset from './Components/AddDataset';
 
 function App() {
+  const marginTop = {
+    marginTop:"20px"
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavigationBar/>
+      <Container>
+        <Row>
+          <Col lg={12} style={marginTop}>
+            <Switch>
+              <Route path="/" exact component={Dashboard}/>
+              <Route path="/AddRecord" exact component={AddRecord}/>
+              <Route path="/AddDataset" exact component={AddDataset}/>
+              <Route path="/RecordsList" exact component={RecordsList}/>
+            </Switch>
+          </Col>
+        </Row>
+    </Container>
+    </Router>
   );
 }
 
